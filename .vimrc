@@ -1,30 +1,45 @@
-set number
-set modeline
+filetype plugin indent on " show existing tab with 4 spaces width
+set tabstop=4 " when indenting with '>', use 4 spaces width
+set shiftwidth=4 " On pressing tab, insert 4 spaces
+set expandtab
+set number " Show line numbers
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('vimfiles/autoload/plug.vim'))
+  silent !curl -fLo vimfiles/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
-" plugin section
-
-Plug 'morhetz/gruvbox'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
-Plug 'preservim/nerdtree'
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-" end vim-plug
+call plug#begin('vimfiles/plugged')
+  Plug 'preservim/nerdtree'
+  Plug 'OmniSharp/omnisharp-vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'vim-syntastic/syntastic'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'morhetz/gruvbox'
 call plug#end()
 
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_cs_checkers = ['code_checker']
+
 " theme
-"colorscheme gruvbox
+colorscheme gruvbox
 set background=dark
-set tabstop=2
 
 let mapleader=","
 nmap <leader>ne :NERDTree<cr>
+
+set lines=45 columns=150
+set guifont=Fira_Code_Medium:h11:W500:cANSI:qDRAFT
+
+" Airline Theme
+let airline_theme='base16'
