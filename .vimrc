@@ -22,6 +22,7 @@ call plug#begin('vimfiles/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} 
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'vim-syntastic/syntastic'
+  Plug 'tpope/vim-rails'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'morhetz/gruvbox'
