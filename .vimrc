@@ -8,6 +8,9 @@ set hidden " switch buffer without saving
 set wildmode=longest,list " vertical autocomplete menu for Ex-mode 
 set number " Show line numbers
 set relativenumber
+set mouse=a
+set hlsearch
+set noswapfile
 
 if empty(glob('vimfiles/autoload/plug.vim'))
   silent !curl -fLo vimfiles/autoload/plug.vim --create-dirs
