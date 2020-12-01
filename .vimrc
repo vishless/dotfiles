@@ -11,6 +11,9 @@ set relativenumber
 set mouse=a
 set hlsearch
 set noswapfile
+set fileformat=unix
+set encoding=utf-8
+set fileencoding=utf-8
 
 if empty(glob('vimfiles/autoload/plug.vim'))
   silent !curl -fLo vimfiles/autoload/plug.vim --create-dirs
@@ -20,6 +23,7 @@ endif
 
 call plug#begin('vimfiles/plugged')
   Plug 'preservim/nerdtree'
+  Plug 'tpope/vim-fugitive'
   Plug 'OmniSharp/omnisharp-vim'
   Plug 'dense-analysis/ale'
   Plug 'neoclide/coc.nvim', {'branch': 'release'} 
