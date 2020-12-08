@@ -15,6 +15,8 @@ set fileformat=unix
 set encoding=utf-8
 set fileencoding=utf-8
 set cursorline
+set splitright
+set splitbelow
 
 if empty(glob('vimfiles/autoload/plug.vim'))
   silent !curl -fLo vimfiles/autoload/plug.vim --create-dirs
@@ -71,6 +73,8 @@ set background=dark
 
 let mapleader=","
 nmap <leader>ne :NERDTree<cr>
+nmap <leader>r :!%:p<CR>
+nmap <leader>d :echo system("date")<CR>
 
 set lines=45 columns=150
 set guifont=Fira_Code_Medium:h11:W500:cANSI:qDRAFT
