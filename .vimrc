@@ -17,6 +17,7 @@ set fileencoding=utf-8
 set cursorline
 set splitright
 set splitbelow
+set autoread
 
 if empty(glob('vimfiles/autoload/plug.vim'))
   silent !curl -fLo vimfiles/autoload/plug.vim --create-dirs
