@@ -18,7 +18,8 @@ set cursorcolumn
 set splitright
 set splitbelow
 set autoread
-set hlsearch
+"set hlsearch
+set ignorecase
 
 " Relative numbers for Normal mode &
 " Absolute numbers for Insert mode
