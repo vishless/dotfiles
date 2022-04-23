@@ -11,7 +11,7 @@ set expandtab " convert tabs to spaces
 set hidden " switch buffer without saving
 set wildmenu
 set wildmode=longest,list " vertical autocomplete menu for Ex-mode 
-"set number " Show line numbers
+set number " Show line numbers
 set mouse=a
 set cursorline
 set cursorcolumn
@@ -20,15 +20,16 @@ set splitbelow
 set autoread
 "set hlsearch
 set ignorecase
+set nofixendofline
 
 " Relative numbers for Normal mode &
 " Absolute numbers for Insert mode
-"set number relativenumber
-"augroup numbertoggle
-"  autocmd!
-"  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-"augroup END
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 "Replace trailing space with dot
 "highlight ExtraWhitespace ctermbg=red guibg=red
@@ -90,9 +91,9 @@ let b:ale_linters = ['cs', 'flow-language-server']
 let g:coc_disable_startup_warning = 1
 
 " statusline
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -117,25 +118,35 @@ set buftype=""
 
 " ** KEY BINDS **
 let mapleader=","
-" Execute current file
-nmap <leader>r :!%:p<cr>
+" VIM execute current file
+nmap <leader>ve :!%:p<cr>
 " toggle NerdTree (file browser)
 nmap <leader>nt :NERDTree<cr>
 " find the open file in NerdTree
 nmap <leader>nf :NERDTreeFind<cr>
-"<cword>"<cr> " Search word under cursor
-noremap <leader>ag :Ag!
+" Open fzf :Files
+nmap <leader>ff :Files<cr>
+" Open fzf :Buffer
+nmap <leader>fb :Buffer<cr>
+" Git status
+nmap <leader>gs :Git<cr>
+" Git blame
+nmap <leader>gb :Git blame<cr>
+" Gread
+nmap <leader>gr :Gread<cr>
+" RG search word under cursor
+nmap <leader>rw yiw :Rg <C-r>"<cr>
 
 " set lines=45 columns=150
 set guifont=Fira_Code_Medium:h11:W500:cANSI:qDRAF
 
 " TO-DO Binds
 " create a new todo item
-"map do o_ 
+map do o_ 
+" check off a todo item and time stamp it
+map ne ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$
 " create a sub todo item
 "map st o<Tab>_ 
-" check off a todo item and time stamp it
-"map ne ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$
 
 set shellpipe=> "Prevent commadn results flashing in terminal
 set tags=./tags,tags;$HOME
