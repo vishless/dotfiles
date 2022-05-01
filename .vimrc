@@ -1,4 +1,4 @@
-filetype indent on " show existing tab with 4 spaces width
+h
 set autoindent
 set encoding=utf-8
 set nocompatible " no compatibility with vi
@@ -40,23 +40,26 @@ set directory=$HOME/.config/nvim/swapfiles//
 
 if empty(glob('$HOME/.local/share/nvim/site/autoload/'))
 	silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-"	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  "	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " vim-plug
 call plug#begin('~/.config/nvim/plugged')
-    Plug 'preservim/nerdtree'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rails'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'morhetz/gruvbox'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'ThePrimeagen/harpoon'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'ThePrimeagen/harpoon'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " theme
@@ -76,10 +79,13 @@ let mapleader=" "
 nmap <leader>nt :NERDTree<cr>
 nmap <leader>nf :NERDTreeFind<cr>
 
+" Fzf
+nmap <leader>ff :Files<cr>
+
 " Telescope
-nnoremap <leader>tf <cmd>Telescope find_files<cr>
-nnoremap <leader>tg <cmd>Telescope live_grep<cr>
-nnoremap <leader>tb <cmd>Telescope buffers<cr>
+"nnoremap <leader>tf <cmd>Telescope find_files<cr>
+"nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+"nnoremap <leader>tb <cmd>Telescope buffers<cr>
 
 " Git
 nmap <leader>gs :Git<cr>
@@ -93,8 +99,12 @@ nnoremap <leader>hu <cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>
 " RG search word under cursor
 nmap <leader>rw yiw :Rg <C-r>"<cr>
 
-" VIM execute current file
-nmap <leader>ve :!%:p<cr>
+" VIM 
+nnoremap <leader>ve :!%:p<cr>
+nnoremap <leader>bp :bp<cr>
+nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bd :bd<cr>
+
 
 " set lines=45 columns=150
 set guifont=Fira_Code_Medium:h11:W500:cANSI:qDRAF
