@@ -1,3 +1,4 @@
+filetype indent on
 set autoindent
 set encoding=utf-8
 set nocompatible " no compatibility with vi
