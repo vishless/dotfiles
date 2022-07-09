@@ -1,0 +1,103 @@
+filetype indent on
+set autoindent
+set encoding=utf-8
+set nocompatible " no compatibility with vi
+set tabstop=2 " when indenting with '>', use 4 spaces width
+set shiftwidth=2 " On pressing tab, insert 4 spaces
+set expandtab " convert tabs to spaces
+set hidden " switch buffer without saving
+set wildmenu
+set wildmode=longest,list " vertical autocomplete menu for Ex-mode 
+set number " Show line numbers
+set mouse=a
+set cursorline
+set cursorcolumn
+set splitright
+set splitbelow
+set autoread
+set ignorecase
+set nofixendofline
+set backspace=indent,eol,start
+set nobackup		" do not keep a backup file
+set nowritebackup
+set autoindent		" always set autoindenting on
+set autoread		" Load changed files without alerting us all the time
+set splitbelow
+set splitright
+set scrolloff=5 	 " Scroll vertially before hitting the edges of the window
+set sidescrolloff=10 " Scroll horizontally before hitting the edges of the window
+" Write files before many operations
+set autowrite
+" … but keep the undo buffer when we switch files, otherwise autowrite can
+" cause some nasty data loss
+set hidden
+set hlsearch
+set cursorline
+set cursorcolumn
+set shellpipe=> "Prevent commadn results flashing in terminal
+set tags=./tags,tags;$HOME
+
+" Absolute numbers for Insert mode
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" Searching files recursively
+set path+=**
+set wildignore+=**/node_modules/**
+set wildignore+=**/vendor/gems/
+set wildignore+=**/webpack/**
+
+" set lines=45 columns=150
+set guifont=Fira_Code_Medium:h11:W500:cANSI:qDRAF
+
+"if empty(glob('$HOME/.local/share/nvim/site/autoload/'))
+"	silent !sh -c 'curl -fLo '${XDG_DATA_HOME:-$HOME/.local/share}'/nvim/site/autoload/plug.vim --create-dirs \
+"  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  "	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
+
+" vim-plug
+call plug#begin('~/.config/nvim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'ThePrimeagen/harpoon'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'calviken/vim-gdscript3'
+Plug 'habamax/vim-godot'
+call plug#end()
+
+" Airline Theme
+let airline_theme='dark'
+" Fugitive - Gwrite error - Cannot write buftype option is set
+set buftype=""
+" COC.nvim
+set updatetime=300
+" theme
+colorscheme gruvbox 
+set background=dark
+
+" ** KEY BINDS **
+let mapleader=" "
+" NerdTree (file browser)
+nmap <leader>nt :NERDTree<cr>
+nmap <leader>nf :NERDTreeFind<cr>
+" Fzf
+nmap <leader>ff :Files<cr>
+nmap <leader>fb :Buffers<cr>
+" Git
+nmap <leader>gs :Git<cr>
+nmap <leader>gb :Git blame<cr>
+nmap <leader>gr :Gread<cr>
+" Harpoon
+nnoremap <leader>ha <cmd>lua require("harpoon.mark").add_file()<cr>
+nnoremap <leader>hu <cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>
