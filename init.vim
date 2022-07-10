@@ -34,6 +34,7 @@ set hidden
 set hlsearch
 set cursorline
 set cursorcolumn
+set updatetime=300
 set shellpipe=> "Prevent commadn results flashing in terminal
 set tags=./tags,tags;$HOME
 
@@ -51,6 +52,9 @@ set wildignore+=**/node_modules/**
 set wildignore+=**/vendor/gems/
 set wildignore+=**/webpack/**
 
+" The double / will ensure filename with path
+set directory=$HOME/.config/nvim/swapfiles//
+
 " set lines=45 columns=150
 set guifont=Fira_Code_Medium:h11:W500:cANSI:qDRAF
 
@@ -62,42 +66,66 @@ set guifont=Fira_Code_Medium:h11:W500:cANSI:qDRAF
 
 " vim-plug
 call plug#begin('~/.config/nvim/plugged')
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
-Plug 'ThePrimeagen/harpoon'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'calviken/vim-gdscript3'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'ThePrimeagen/harpoon'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
 Plug 'habamax/vim-godot'
 call plug#end()
 
 " Airline Theme
 let airline_theme='dark'
+
 " Fugitive - Gwrite error - Cannot write buftype option is set
 set buftype=""
+
 " COC.nvim
-set updatetime=300
+
+" Solargraph is for ruby support
+let g:coc_global_extensions = ['coc-solargraph']
+
+" TAB / <C-n> completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " theme
 colorscheme gruvbox 
 set background=dark
 
 " ** KEY BINDS **
 let mapleader=" "
+
 " NerdTree (file browser)
 nmap <leader>nt :NERDTree<cr>
 nmap <leader>nf :NERDTreeFind<cr>
+
 " Fzf
 nmap <leader>ff :Files<cr>
 nmap <leader>fb :Buffers<cr>
+
 " Git
 nmap <leader>gs :Git<cr>
 nmap <leader>gb :Git blame<cr>
 nmap <leader>gr :Gread<cr>
+
 " Harpoon
 nnoremap <leader>ha <cmd>lua require("harpoon.mark").add_file()<cr>
 nnoremap <leader>hu <cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>
