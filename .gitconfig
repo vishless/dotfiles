@@ -5,7 +5,7 @@
     ci = commit
 [core]
     editor = nvim
-    excludesfile = /home/viz/.gitignore
+    excludesfile = ~/.gitignore
     trustctime = false
 [pager]
     branch = false
