@@ -146,14 +146,25 @@ bindsym $mod+r mode "resize"
 
 exec --no-startup-id xrandr --output DP-0 --auto --right-of HDMI-0
 
+### Gaps ###
+gaps horizontal 1
+gaps vertical   1
+gaps inner 1
+
+# New wallpaper on every login
+exec --no-startup-id feh --bg-center ~/Pictures/Wallpapers/city.avif
+
 workspace 1 output DP-0
-workspace 2 output HDMI-1
+workspace 0 output HDMI-0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        output DP-0
+	output DP-0
+	position top
+	mode dock
         status_command i3status -c /home/viz/.config/i3/i3status.conf
+	tray_output full
 }
 
 # reload the configuration file
