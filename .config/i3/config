@@ -143,10 +143,24 @@ bindsym $mod+r mode "resize"
 
 exec --no-startup-id xrandr --output DP-0 --auto --right-of HDMI-0
 
+# Set resolution for the monitors
+exec --no-startup-id xrandr --output DP-0 --mode 2560x1440
+exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080
+
 ### Gaps ###
 gaps horizontal 1
 gaps vertical   1
 gaps inner 2
+
+## Screenshots
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+## Clipboard Screenshots
+bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # New wallpaper on every login
 exec --no-startup-id feh --bg-center ~/Pictures/Wallpapers/green-grass.jpeg
@@ -171,3 +185,4 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+f
