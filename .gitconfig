@@ -4,7 +4,7 @@
     co = checkout
     ci = commit
 [core]
-    editor = nvim
+    editor = vim
     excludesfile = ~/.gitignore
     trustctime = false
 [pager]
