@@ -156,5 +156,4 @@ source ~/.rvm/scripts/rvm
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # set slower mouse speed
-#ctmVal = 2
-#xinput set-prop 12 "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, $ctmVal
+xinput set-prop 12 "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 2
