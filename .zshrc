@@ -154,3 +154,7 @@ export YVM_DIR=/home/asplap1392/.yvm
 source ~/.rvm/scripts/rvm
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# set slower mouse speed
+#ctmVal = 2
+#xinput set-prop 12 "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, $ctmVal
