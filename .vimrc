@@ -114,3 +114,8 @@ nnoremap <leader>bd :bd<cr>
 set guifont=Consolas:h12:W500
 set shellpipe=> "Prevent commadn results flashing in terminal
 set tags=./tags,tags;$HOME
+
+" create a new todo item
+"map do o_ 
+" check off a todo item and time stamp it
+"map ne ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$
