@@ -101,8 +101,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias python=python2
 
-# VIM keybinds for bash
+# set vim mode for the shell
 set -o vi
+# provent echo from overwriting a file
+set -o noclobber
 
 export PATH="$PATH:$HOME/Apps/bin"
 export LESS="-FRSX"
